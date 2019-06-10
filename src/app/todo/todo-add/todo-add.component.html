@@ -1,0 +1,45 @@
+<div class="example-button-row">
+  <form [formGroup]="todoCreateForm"  class="example-form" (submit)="addTodo()">
+    <input type="hidden" formControlName="$key">
+
+    <!-- TODO Title-->
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" placeholder="Title" formControlName="title" id="title">
+      <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('title', 'required')">Title is required</mat-error>
+      <mat-error *ngIf="hasError('title', 'maxlength')">You have more than 60 characters</mat-error>
+    </mat-form-field>
+
+    <!-- TODO Target Date-->
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker" placeholder="Target Date" formControlName="targetDate" id="targetDate" readonly (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- TODO Status-->
+    <mat-form-field class="example-full-width">
+      <mat-select formControlName="completionStatus" placeholder="Status">
+        <mat-option>None</mat-option>
+        <ng-container *ngFor="let status of statusVals">
+        <mat-option value={{status.id}}>{{status.value}}</mat-option>
+        </ng-container>
+      </mat-select>
+      <mat-error *ngIf="hasError('completionStatus', 'required')">Select a Status</mat-error>
+      
+    </mat-form-field>    
+    
+    <!-- TODO Detail-->
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <mat-hint align="end">Not more then 250 characters long.</mat-hint>
+        <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
+        <mat-error *ngIf="hasError('description', 'maxlength')">You have more than 250 characters</mat-error>
+      </mat-form-field>
+    
+    <br/>  
+    <button mat-raised-button color="primary" [disabled]="todoCreateForm.invalid">Submit</button>
+    <span>&nbsp;</span>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+  </form>
+</div>
