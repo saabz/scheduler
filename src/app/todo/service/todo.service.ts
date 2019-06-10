@@ -8,6 +8,10 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 })
 export class TodoService {
 
+  todoList: AngularFireList<any>;
+
+  constructor(private fireDatabase: AngularFireDatabase) { }
+
   public todoCreateForm: FormGroup = new FormGroup({
     $key: new FormControl(null),
     title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -16,21 +20,27 @@ export class TodoService {
     completionStatus: new FormControl('', [Validators.required]),
   });
 
-  todoList: AngularFireList<any>;
-
-  constructor(private fireDatabase: AngularFireDatabase) { }
-
+  initializeFormGroup(){
+    this.todoCreateForm.setValue({
+      $key: null,
+      title: '',
+      targetDate: '',
+      description: '',
+      completionStatus: '',
+    })
+  }
+ 
   getTodoList(){
     this.todoList = this.fireDatabase.list('todos');
     return this.todoList.snapshotChanges();
   }
 
-  insertTodo(todo){
+  insertTodo(todo){   
     this.todoList.push({
       title: todo.title,
       description: todo.description,
       completionStatus: todo.completionStatus,
-      targetDate: todo.targetDate
+      targetDate: todo.targetDate.toString()
     });
   }
 

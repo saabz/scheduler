@@ -5,7 +5,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 
 // required modules
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, 
-  MatNativeDateModule, MatSelectModule
+  MatNativeDateModule, MatSelectModule, MatSnackBarModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -16,7 +16,8 @@ import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 
 // service
-import { TodoService } from './service/todo.service'
+import { TodoService } from './service/todo.service';
+import { NotificationService } from '../shared/notification.service';
 
 // config
 import { environment } from '../../environments/environment';
@@ -30,12 +31,12 @@ import { environment } from '../../environments/environment';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule, MatCheckboxModule,MatFormFieldModule, MatInputModule , MatDatepickerModule, MatSelectModule ,
-    MatNativeDateModule, 
+    MatNativeDateModule, MatSnackBarModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],
   exports: [ TodoAddComponent, TodoListComponent,],
-  providers: [ TodoService ]
+  providers: [ TodoService, NotificationService ]
 
 })
 export class TodoModule { }

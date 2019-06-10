@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 // service
 import { TodoService } from '../service/todo.service';
+import { NotificationService } from '../../shared/notification.service';
+
 
 @Component({
   selector: 'app-todo-add',
@@ -12,11 +14,11 @@ import { TodoService } from '../service/todo.service';
 export class TodoAddComponent implements OnInit {
   public todoCreateForm: FormGroup;
   statusVals = [
-    { id: 1, value: "Pending" },
-    { id: 2, value: "In Progress" },
-    { id: 3, value: "Done" },
+    { value: "Pending" },
+    { value: "In Progress" },
+    { value: "Done" },
   ];
-  constructor(private service: TodoService) { }
+  constructor(private service: TodoService, private notification: NotificationService) { }
 
   ngOnInit() {
 
@@ -32,6 +34,8 @@ export class TodoAddComponent implements OnInit {
     if(this.todoCreateForm.valid){
       this.service.insertTodo(this.todoCreateForm.value);
       this.todoCreateForm.reset();
+      this.service.initializeFormGroup();
+      this.notification.success("New Todo added");
       console.log("new todo added");
     }
     else{
@@ -42,6 +46,7 @@ export class TodoAddComponent implements OnInit {
 
   onClear(){
     this.todoCreateForm.reset();
+    this.service.initializeFormGroup();
   }
 
 }
