@@ -5,7 +5,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 
 // required modules
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, 
-  MatNativeDateModule, MatSelectModule, MatSnackBarModule
+  MatNativeDateModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatIconModule, 
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -31,7 +31,7 @@ import { environment } from '../../environments/environment';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule, MatCheckboxModule,MatFormFieldModule, MatInputModule , MatDatepickerModule, MatSelectModule ,
-    MatNativeDateModule, MatSnackBarModule, 
+    MatNativeDateModule, MatSnackBarModule, MatTableModule, MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
   ],

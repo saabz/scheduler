@@ -1,3 +1,34 @@
-<p>
-  todo-list works!
-</p>
+<div class="mat-elevation-z8">
+
+  <mat-table [dataSource]="listData"  >
+    
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>  
+    </ng-container>
+
+    <ng-container matColumnDef="completionStatus">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.completionStatus}}</mat-cell>  
+    </ng-container>
+   
+    <ng-container matColumnDef="targetDate">
+        <mat-header-cell *matHeaderCellDef>Target Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.targetDate}}</mat-cell>  
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+
+          <button mat-icon-button><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+        </mat-cell>  
+    </ng-container>    
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>      
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  </mat-table>
+
+</div>
