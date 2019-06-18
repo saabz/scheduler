@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 // service
 import { TodoService } from '../service/todo.service';
-import { NotificationService } from '../../shared/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 
 @Component({
