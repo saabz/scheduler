@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoService } from '../service/todo.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,7 +10,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor( private todoService: TodoService) { }
+  constructor( private todoService: TodoService, private notifier: NotificationService) { }
 
   listData: MatTableDataSource<any>;
   displayedColumns: string[] =  ['title','targetDate','completionStatus', 'actions'];
@@ -32,4 +33,11 @@ export class TodoListComponent implements OnInit {
       });
   }
 
+  onDelete($key){
+    if(confirm("Are you sure to delete this record ?")){
+      this.todoService.deleteTodo($key);
+      this.notifier.warn("Record deleted");
+    }
+    
+  }
 }

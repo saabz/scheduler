@@ -18,4 +18,8 @@ export class NotificationService {
     this.snackBar.open(msg,'', this.config);
   }
 
+  warn(msg){
+    this.snackBar.open(msg, '', this.config );
+  }
+
 }
