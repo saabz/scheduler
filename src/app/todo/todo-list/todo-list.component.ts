@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoService } from '../service/todo.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,6 +13,8 @@ export class TodoListComponent implements OnInit {
 
   listData: MatTableDataSource<any>;
   displayedColumns: string[] =  ['title','targetDate','completionStatus', 'actions'];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.todoService.getTodoList().subscribe(
@@ -24,7 +26,9 @@ export class TodoListComponent implements OnInit {
           };              
         
         }); 
-        this.listData = new MatTableDataSource(arr);   
+        this.listData = new MatTableDataSource(arr);  
+        this.listData.sort = this.sort; 
+        this.listData.paginator = this.paginator; 
       });
   }
 
