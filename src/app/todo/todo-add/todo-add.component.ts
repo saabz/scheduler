@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 // service
 import { TodoService } from '../service/todo.service';
 import { NotificationService } from '../../shared/services/notification.service';
+import { StatusService } from '../../shared/services/status.service';
 
 
 @Component({
@@ -12,16 +13,20 @@ import { NotificationService } from '../../shared/services/notification.service'
   styleUrls: ['./todo-add.component.scss']
 })
 export class TodoAddComponent implements OnInit {
+  
   public todoCreateForm: FormGroup;
-  statusVals = [
-    { value: "Pending" },
-    { value: "In Progress" },
-    { value: "Done" },
-  ];
-  constructor(private service: TodoService, private notification: NotificationService) { }
+  
+  // statusVals = [
+  //   { value: "Pending" },
+  //   { value: "In Progress" },
+  //   { value: "Done" },
+  // ];
+
+  constructor(private service: TodoService, private notification: NotificationService,private statusService: StatusService) { 
+   
+  }
 
   ngOnInit() {
-
     this.todoCreateForm = this.service.todoCreateForm;
     this.service.getTodoList();
   }

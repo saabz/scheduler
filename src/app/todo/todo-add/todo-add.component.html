@@ -22,8 +22,8 @@
     <mat-form-field class="example-full-width">
       <mat-select formControlName="completionStatus" placeholder="Status">
         <mat-option>None</mat-option>
-        <ng-container *ngFor="let status of statusVals">
-        <mat-option value={{status.value}}>{{status.value}}</mat-option>
+        <ng-container *ngFor="let status of statusService.statusArr">
+        <mat-option value={{status.id}}>{{status.display}}</mat-option>
         </ng-container>
       </mat-select>
       <mat-error *ngIf="hasError('completionStatus', 'required')">Select a Status</mat-error>
