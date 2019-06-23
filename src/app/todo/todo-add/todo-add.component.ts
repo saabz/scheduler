@@ -47,6 +47,7 @@ export class TodoAddComponent implements OnInit {
   onClear(){
     this.todoCreateForm.reset();
     this.service.initializeFormGroup();
+    return false;
   }
 
 }

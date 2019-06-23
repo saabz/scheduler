@@ -24,7 +24,7 @@ export class TodoService {
     this.todoCreateForm.setValue({
       $key: null,
       title: '',
-      targetDate: '',
+      targetDate: new Date().toISOString().substring(0,10),
       description: '',
       completionStatus: '',
     })
